@@ -14,5 +14,6 @@ file(GLOB SOURCES "src/*.cpp")
 
 add_executable(dup_finder ${SOURCES})
 
+target_compile_features(dup_finder PRIVATE cxx_std_17)
 #target_link_libraries(dup_finder PRIVATE Threads::Threads)
 target_link_libraries(dup_finder)
