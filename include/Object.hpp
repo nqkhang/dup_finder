@@ -7,23 +7,24 @@
 class Object
 {
 private:
-std::string _name;
-std::string _path;
-unsigned int _size;
+    std::string _name;
+    std::string _path;
+    unsigned int _size;
 
 public:
-Object();
-Object( const std::string iName,
-        const std::string iPath);
-~Object();
+    Object();
+    Object(const std::string iName,
+           const std::string iPath);
 
-std::string getName();
-void setName(const std::string iName);
+    ~Object();
 
-std::string getPath();
-void setPath(const std::string iPath);
+    std::string getName();
+    void setName(const std::string iName);
 
-unsigned int getSize();
-void setSize(const unsigned int &iSize);
+    std::string getPath();
+    void setPath(const std::string iPath);
+
+    unsigned int getSize();
+    void setSize(const unsigned int &iSize);
 };
 #endif

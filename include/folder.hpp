@@ -6,12 +6,13 @@
 #include "Object.hpp"
 #include "file.hpp"
 
-class Folder:public Object
+class Folder : public Object
 {
 private:
-std::string _subFolder = "";
+    std::string _subFolder;
+
 public:
-Folder();
-~Folder();
+    Folder();
+    ~Folder();
 };
 #endif

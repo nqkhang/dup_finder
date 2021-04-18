@@ -8,7 +8,7 @@ class File
 {
 private:
 public:
-File();
-~File();
+    File();
+    ~File();
 };
 #endif
