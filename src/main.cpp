@@ -34,7 +34,7 @@ int main(int argc, const char**argv)
 
     // cout << check_exists("yhvgt") << endl;
     vector<string> fileList;
-    getFileList(fs::current_path().string(), fileList);
+    duplib::getFileList(fs::current_path().string(), fileList);
 
     for(string file: fileList)
     {

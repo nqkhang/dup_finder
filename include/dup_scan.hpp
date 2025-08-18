@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,6 +7,8 @@
 
 using namespace std;
 namespace fs = std::filesystem;
+
+namespace duplib {
 
 bool check_exists(const fs::path &p, fs::file_status s = fs::file_status{})
 {
@@ -58,3 +62,7 @@ void getFileList(const string iScanPath, vector<string> &oFileList)
              << iScanPath << "\n";
     }
 }
+
+
+} // namespace duplib
+
