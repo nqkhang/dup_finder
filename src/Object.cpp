@@ -1,10 +1,18 @@
 #include "Object.hpp"
 
-Object::Object()
-{
-    _size = 0;
+namespace dup_finder {
+
+// Object::Object()
+// {
+//     _name = "";
+//     _path = "";
+//     _size = 0;
+// }
+
+Object::Object(const std::string sObjectPath) {
     _name = "";
-    _path = "";
+    _path = sObjectPath;
+    _size = 0;
 }
 
 Object::Object(const std::string iName,
@@ -17,9 +25,20 @@ Object::Object(const std::string iName,
 
 Object::~Object()
 {
-    _size =0;
+    _size = 0;
     _name = "";
     _path = "";
+}
+
+void Object::updateSize()
+{
+    if (this->_path == "")
+    {
+        // check how to output error
+        return;
+    }
+
+    return; // do nothing for now
 }
 
 std::string Object::getName()
@@ -51,3 +70,5 @@ void Object::setSize(const unsigned int & iSize)
 {
     _size = iSize;
 }
+
+} // namespace dup_finder

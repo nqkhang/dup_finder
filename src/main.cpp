@@ -2,6 +2,7 @@
 #include <folder.hpp>
 #include <filesystem>
 #include <dup_scan.hpp>
+#include <Object.hpp>
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -36,8 +37,12 @@ int main(int argc, const char**argv)
     vector<string> fileList;
     duplib::getFileList(fs::current_path().string(), fileList);
 
+    vector<dup_finder::Object> objectList;
+
     for(string file: fileList)
     {
+        dup_finder::Object newObject(file);
+
         cout << "File: " << file << endl;
     }
 

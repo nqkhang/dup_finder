@@ -4,15 +4,21 @@
 
 #include <string>
 
+namespace dup_finder {
+
 class Object
 {
 private:
-    std::string _name;
-    std::string _path;
-    unsigned int _size;
+    std::string _name;  // file name
+    std::string _path;  // absolute path
+    unsigned int _size; // in Byte
+
+    void updateSize();
 
 public:
-    Object();
+    // Object();
+    Object(const std::string sObjectPath);
+
     Object(const std::string iName,
            const std::string iPath);
 
@@ -27,4 +33,6 @@ public:
     unsigned int getSize();
     void setSize(const unsigned int &iSize);
 };
+}
+
 #endif
