@@ -1,8 +1,8 @@
 #include <iostream>
-#include <folder.hpp>
 #include <filesystem>
-#include <dup_scan.hpp>
-#include <Object.hpp>
+// #include <dup_scan.hpp>
+// #include <Object.hpp>
+#include <ObjectManager.hpp>
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -34,16 +34,31 @@ int main(int argc, const char**argv)
     // }
 
     // cout << check_exists("yhvgt") << endl;
-    vector<string> fileList;
-    duplib::getFileList(fs::current_path().string(), fileList);
+    // vector<string> fileList;
+    // duplib::getFileList(fs::current_path().string(), fileList);
 
-    vector<dup_finder::Object> objectList;
+    // vector<dup_finder::Object> objectList;
 
-    for(string file: fileList)
-    {
-        dup_finder::Object newObject(file);
+    // for(string file: fileList)
+    // {
+    //     dup_finder::Object newObject(file);
 
-        cout << "File: " << file << endl;
+    //     cout << "File: " << file << endl;
+    // }
+
+    std::string currentPath = fs::current_path().string();
+
+    dup_finder::ObjectManager myObjectManager;
+
+    myObjectManager.loadPath(currentPath);
+
+    vector<string> fileList ;
+
+    fileList = myObjectManager.getListOfAllFiles();
+
+    cout << "List of files:\n";
+    for(string filePath: fileList) {
+        cout << filePath << endl;
     }
 
 
