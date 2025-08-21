@@ -27,7 +27,6 @@ void ObjectManager::loadPath(const string sPath) {
     if (this->mPathToAnalyze != "") {
         cout << "Updating old path :'" << mPathToAnalyze 
         << "'\nTo new path: '" << sPath << "'\n";
-        
     }
     mPathToAnalyze = sPath;
 }
@@ -47,6 +46,26 @@ bool isValidPath(const string sPath) {
     return false;
 }
 
+void ObjectManager::getListOfFileFrom(const std::string sPath, VecStr& fileList) {
+
+    if (not isValidPath(sPath)) {
+        cout << "Path: " << sPath << " is invalide. Please have a look there!\n";
+        return;
+    }
+
+    fs::path root_path(sPath);
+    for (const auto & entry : fs::directory_iterator(root_path) ) {
+        const auto filenameStr = entry.path().filename().string();
+
+        if(entry.is_regular_file()) {
+            fileList.push_back(entry.path().string());
+        }
+        else if (entry.is_directory()) {
+            getListOfFileFrom(entry.path().string(), fileList);
+        }
+    }
+}
+
 VecStr ObjectManager::getListOfAllFiles() {
     VecStr res;
 
@@ -54,22 +73,7 @@ VecStr ObjectManager::getListOfAllFiles() {
         return res;
     }
 
-    if (not isValidPath(this->mPathToAnalyze)) {
-        return res;
-    }
-
-    fs::path root_path(this->mPathToAnalyze);
-
-    for (const auto & entry : fs::directory_iterator(root_path) ) {
-        const auto filenameStr = entry.path().filename().string();
-
-        if(entry.is_regular_file()) {
-            res.push_back(entry.path().string());
-        }
-        // else if (entry.is_directory) {}
-
-    }
-    
+    getListOfFileFrom(this->mPathToAnalyze, res);
 
     return res;
 }

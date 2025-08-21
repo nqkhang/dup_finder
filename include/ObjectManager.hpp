@@ -21,6 +21,7 @@ private:
     std::string mPathToAnalyze;
 
     void analyzePath();
+    void getListOfFileFrom(const std::string sPath, VecStr& fileList);
 public:
 
     ObjectManager();
