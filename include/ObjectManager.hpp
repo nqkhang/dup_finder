@@ -25,6 +25,8 @@ private:
     int getFileSize(const std::string sFile);
 
     bool isValidPath(const std::string sPath);
+
+
 public:
 
     ObjectManager();
@@ -34,6 +36,8 @@ public:
     void loadPath(const std::string sPath);
 
     VecVecStr getDuplicateBySize();
+
+    VecVecStr getDuplicateByHash(const VecVecStr vecfiles);
 
     VecStr getListOfAllFiles();
 

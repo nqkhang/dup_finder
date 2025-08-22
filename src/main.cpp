@@ -20,11 +20,22 @@ int main(int argc, const char**argv)
 
     VecVecStr dupBySize = myObjectManager.getDuplicateBySize();
 
-    if (dupBySize.size() == 0) {
-        return 0;
-    }
+    // if (dupBySize.size() == 0) {
+    //     return 0;
+    // }
 
-    for (VecStr item: dupBySize) {
+    // for (VecStr item: dupBySize) {
+    //     cout<< "\n-------------------------\n";
+    //     for (std::string filePath: item) {
+    //         cout << filePath << endl;
+    //     }
+    //     cout<< "`````````````````````````\n";
+    // }
+
+    VecVecStr dupByHash = myObjectManager.getDuplicateByHash(dupBySize);
+    cout << "\n DUP BY HASH\n";
+
+    for (VecStr item: dupByHash) {
         cout<< "\n-------------------------\n";
         for (std::string filePath: item) {
             cout << filePath << endl;
