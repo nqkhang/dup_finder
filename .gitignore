@@ -37,3 +37,6 @@
 
 # .vscode folder
 .vscode
+
+# cmake user preset
+CMakeUserPresets.json

@@ -1,8 +1,13 @@
 #include "ObjectManager.hpp"
+#include "sha256.hpp"
 
 #include <iostream>
 #include <filesystem>
 #include <map>
+
+// #include <openssl/sha.h>
+// #include "openssl/md5.h"
+// #include <zlib.h>
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -77,6 +82,31 @@ VecVecStr ObjectManager::getDuplicateBySize() {
         }
     }
 
+    return res;
+}
+
+VecVecStr ObjectManager::getDuplicateByHash(const VecVecStr vecfiles) {
+    VecVecStr res;
+    if (vecfiles.size() == 0) {
+        return res;
+    }
+
+    map<string, VecStr> fileHashDictionary;
+
+    for (VecStr group: vecfiles) {
+        for (string filePath: group) {
+            string hashResult = "";
+            dup_finder::sha256_file(filePath, hashResult);
+
+            fileHashDictionary[hashResult].push_back(filePath);
+        }
+    }
+
+    for (auto item: fileHashDictionary) {
+        if ( item.second.size() > 1 ) {
+            res.push_back(item.second);
+        }
+    }
 
     return res;
 }
