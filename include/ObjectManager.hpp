@@ -22,6 +22,9 @@ private:
 
     void analyzePath();
     void getListOfFileFrom(const std::string sPath, VecStr& fileList);
+    int getFileSize(const std::string sFile);
+
+    bool isValidPath(const std::string sPath);
 public:
 
     ObjectManager();

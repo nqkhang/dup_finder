@@ -18,11 +18,19 @@ int main(int argc, const char**argv)
 
     fileList = myObjectManager.getListOfAllFiles();
 
-    cout << "List of files:\n";
-    for(string filePath: fileList) {
-        cout << filePath << endl;
+    VecVecStr dupBySize = myObjectManager.getDuplicateBySize();
+
+    if (dupBySize.size() == 0) {
+        return 0;
     }
 
+    for (VecStr item: dupBySize) {
+        cout<< "\n-------------------------\n";
+        for (std::string filePath: item) {
+            cout << filePath << endl;
+        }
+        cout<< "`````````````````````````\n";
+    }
 
     return 0;
 }
