@@ -19,6 +19,8 @@ include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
 #find_package(Threads)
 find_package(OpenSSL REQUIRED)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 add_executable(dup_finder ${SOURCES})
 
 target_compile_features(dup_finder PRIVATE cxx_std_17)
