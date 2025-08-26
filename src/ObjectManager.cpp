@@ -154,4 +154,29 @@ VecStr ObjectManager::getListOfAllFiles() {
     return res;
 }
 
+void ObjectManager::loadObjectsFrom(const string sPath) {
+    if (not isValidPath(sPath)) {
+        cout << "Path: " << sPath << " is invalide. Please have a look there!\n";
+        return;
+    }
+
+    fs::path root_path(sPath);
+    for (const auto & entry : fs::directory_iterator(root_path) ) {
+        // const auto filenameStr = entry.path().filename().string();
+        // TO DO: implement ignore rule
+        // ex: '.git', '.vscode', etc..
+
+        if(entry.is_regular_file()) {
+            // fileList.push_back(entry.path().string());
+            dup_finder::Object newFile(entry.path());
+            newFile.setSize( fs::file_size( entry.path().string() ) );
+        }
+        else if (entry.is_directory()) {
+            // getListOfFileFrom(entry.path().string(), fileList);
+            loadObjectsFrom(entry.path().string());
+        }
+    }
+
+}
+
 } // namespace dup_finder

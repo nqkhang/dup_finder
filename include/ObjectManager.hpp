@@ -20,11 +20,15 @@ private:
 
     std::string mPathToAnalyze;
 
+    std::vector< dup_finder::Object> mListOfFiles;
+
     void analyzePath();
     void getListOfFileFrom(const std::string sPath, VecStr& fileList);
     int getFileSize(const std::string sFile);
 
     bool isValidPath(const std::string sPath);
+
+    void loadObjectsFrom(const std::string sPath);
 
 
 public:
