@@ -5,10 +5,6 @@
 #include <filesystem>
 #include <map>
 
-// #include <openssl/sha.h>
-// #include "openssl/md5.h"
-// #include <zlib.h>
-
 using namespace std;
 namespace fs = std::filesystem;
 
@@ -177,6 +173,36 @@ void ObjectManager::loadObjectsFrom(const string sPath) {
         }
     }
 
+}
+
+void ObjectManager::filterWithFileSize() {
+    if(mListOfFiles.size() == 0) {
+        return;
+    }
+
+    map<int, VecStr> fileSizeDictionary;
+
+    for (dup_finder::Object file: mListOfFiles) {
+        int size = file.getSize();
+
+        if(size != 0) {
+            fileSizeDictionary[size].push_back(file.getPath());
+        } else {
+            cout << "Skipping file :'" << file.getPath() << "' with size 0\n";
+        }
+    }
+
+    std::vector< dup_finder::Object> newListOfFile;
+
+    for (auto item: fileSizeDictionary) {
+        if (item.second.size() >1 ) {
+            // res.push_back(item.second);
+            for( std::string filePath: item.second) {
+                cout << "WIP\n";
+                // considering a different approach.
+            }
+        }
+    }
 }
 
 } // namespace dup_finder

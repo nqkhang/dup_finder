@@ -30,6 +30,8 @@ private:
 
     void loadObjectsFrom(const std::string sPath);
 
+    void filterWithFileSize();
+
 
 public:
 
